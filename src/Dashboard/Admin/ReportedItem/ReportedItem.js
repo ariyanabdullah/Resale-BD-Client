@@ -37,8 +37,6 @@ const ReportedItem = () => {
 
   return (
     <div>
-      <h1>This is Reported Item {ReportedItems.length} </h1>
-
       <div>
         <div className="overflow-x-auto">
           <table className="table w-full">

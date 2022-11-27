@@ -37,7 +37,7 @@ const AllBuyers = () => {
   return (
     <div>
       <h1 className="text-primary my-4 text-center font-bold text-2xl">
-        All Sellers Are In the Table {sellers.length}
+        All Buyers Are In the Table
       </h1>
 
       <div>

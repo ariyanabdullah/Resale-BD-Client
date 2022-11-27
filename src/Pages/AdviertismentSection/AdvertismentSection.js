@@ -15,6 +15,10 @@ const AdvertismentSection = () => {
 
   // console.log(advertisMentItems);
 
+  if (advertisMentItems.length === 0) {
+    return <div> {""}</div>;
+  }
+
   return (
     <div>
       <h1 className="text-center text-5xl text-secondary font-extrabold ">

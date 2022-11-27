@@ -24,7 +24,7 @@ const Payment = () => {
           </div>
         </div>
 
-        <div className="w-96 shadow-lg border  my-auto">
+        <div className="w-96 shadow-lg border py-9 px-4 rounded-sm  my-auto">
           <Elements stripe={stripePromise}>
             <Checkout ordered={ordered} />
           </Elements>

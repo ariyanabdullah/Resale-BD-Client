@@ -90,7 +90,7 @@ const MyOrders = () => {
                     </>
                   )}
                   {order.productPrice && order.paid && (
-                    <p className="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-primary font-semibold text-primary">
+                    <p className="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2  font-semibold text-primary">
                       Paid
                     </p>
                   )}
