@@ -1,4 +1,5 @@
 import React from "react";
+import AdvertismentSection from "../AdviertismentSection/AdvertismentSection";
 import AllCategory from "./AllCategory/AllCategory";
 import Banner from "./Banner/Banner";
 import Shiping from "./Shiping/Shiping";
@@ -23,6 +24,8 @@ const Home = () => {
       </section>
 
       {/* Advirtisment */}
+
+      <AdvertismentSection></AdvertismentSection>
 
       {/* Testimonial Section */}
 
