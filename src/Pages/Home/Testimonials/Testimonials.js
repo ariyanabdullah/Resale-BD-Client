@@ -5,6 +5,7 @@ const Testimonials = () => {
     <div>
       <section className="mt-8 bg-neutral">
         <div className="container mx-auto flex flex-col items-center pb-6 mb-4 md:p-10 md:px-12">
+          <h1 className="text-2xl font-bold my-2  text-center">Testimonials</h1>
           <h1 className="text-4xl font-semibold leading-none text-center">
             What our customers are saying about us
           </h1>
