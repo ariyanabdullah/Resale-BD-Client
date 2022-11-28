@@ -30,14 +30,33 @@ const AdvertismentSection = () => {
       <section className="container mt-12 mb-20 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {advertisMentItems.map((item) => (
-            <div key={item._id} className="card w-96 bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">{item.product_name}</h2>
-                <p></p>
+            // <div key={item._id} className="card w-96 bg-base-100 shadow-xl">
+            //   <div className="card-body">
+            //     <h2 className="card-title">{item.product_name}</h2>
+            //     <p></p>
+            //   </div>
+            //   <figure className="h-[200px] ">
+            //     <img className="w-full" src={item.image} alt="" />
+            //   </figure>
+            // </div>
+
+            <div
+              key={item._id}
+              className="flex flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-xl transition dark:shadow-slate-700/[.7]"
+            >
+              <div className="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
+                <img
+                  className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl"
+                  src={item.image}
+                  alt=".."
+                />
               </div>
-              <figure className="h-[200px] ">
-                <img className="w-full" src={item.image} alt="" />
-              </figure>
+
+              <div className="p-4 md:p-5">
+                <h3 className="text-lg text-center font-bold text-primary ">
+                  {item.product_name}
+                </h3>
+              </div>
             </div>
           ))}
         </div>
