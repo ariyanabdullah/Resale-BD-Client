@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 
 const AllBuyers = () => {
+  const navigate = useNavigate();
+
   const {
     data: sellers,
     isLoading,
@@ -11,7 +14,15 @@ const AllBuyers = () => {
   } = useQuery({
     queryKey: ["Sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=user");
+      const res = await fetch("http://localhost:5000/users?role=user", {
+        headers: {
+          authorization: `${localStorage.getItem("accessToken")}`,
+        },
+      });
+
+      if (res.status === 401 || res.status === 402 || res.status === 403) {
+        return navigate("/");
+      }
       const data = await res.json();
       return data;
     },

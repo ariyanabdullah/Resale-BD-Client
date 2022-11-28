@@ -5,9 +5,12 @@ import { authcontext } from "../../../Authprovider/Authprovider";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const MyProduct = () => {
   const { user } = useContext(authcontext);
+
+  const navigate = useNavigate();
 
   const {
     data: products,
@@ -39,9 +42,15 @@ const MyProduct = () => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: `${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 402 || res.status === 403) {
+          return navigate("/");
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast("Item is ready  to Advertisment");

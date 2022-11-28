@@ -80,10 +80,20 @@ const AddProduct = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              authorization: `${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(productInfo),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              if (
+                res.status === 401 ||
+                res.status === 402 ||
+                res.status === 403
+              ) {
+                return navigate("/");
+              }
+              return res.json();
+            })
             .then((data) => {
               if (data.acknowledged) {
                 toast.success("product added Successfully");

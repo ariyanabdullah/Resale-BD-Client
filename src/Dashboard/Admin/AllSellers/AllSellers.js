@@ -4,9 +4,11 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { authcontext } from "../../../Authprovider/Authprovider";
 import Loader from "../../../Components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const AllSellers = () => {
   const { user } = useContext(authcontext);
+  const navigate = useNavigate();
 
   const {
     data: sellers,
@@ -15,7 +17,14 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["Sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=seller");
+      const res = await fetch("http://localhost:5000/users?role=seller", {
+        headers: {
+          authorization: `${localStorage.getItem("accessToken")}`,
+        },
+      });
+      if (res.status === 401 || res.status === 402 || res.status === 403) {
+        return navigate("/");
+      }
       const data = await res.json();
       return data;
     },

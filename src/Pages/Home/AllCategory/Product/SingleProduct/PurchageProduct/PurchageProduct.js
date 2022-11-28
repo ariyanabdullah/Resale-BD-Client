@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 import Loader from "../../../../../../Components/Loader/Loader";
 
 import { authcontext } from "../../../../../../Authprovider/Authprovider";
+import { useNavigate } from "react-router-dom";
 
 const PurchageProduct = ({ product, setBooked }) => {
   const { user } = useContext(authcontext);
 
-  console.log(product);
+  const navigate = useNavigate();
+
+  // console.log(product);
 
   const [loading, setLoading] = useState(false);
 
@@ -39,10 +42,16 @@ const PurchageProduct = ({ product, setBooked }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(order),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 402 || res.status === 403) {
+          return navigate("/");
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Booking Approved");
