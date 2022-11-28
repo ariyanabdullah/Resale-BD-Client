@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authcontext } from "../../../Authprovider/Authprovider";
+import Loader from "../../../Components/Loader/Loader";
 import UseAdmin from "../../../Hooks/UseAdmin";
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const [isadmin] = UseAdmin(user?.email);
+  const [isadmin, loading] = UseAdmin(user?.email);
 
   const handleLogOut = () => {
     LogOut()
@@ -66,6 +67,10 @@ const Header = () => {
       </>
     </>
   );
+
+  // if (loading) {
+  //   return <Loader></Loader>;
+  // }
 
   return (
     <div className="bg-neutral">
