@@ -1,16 +1,25 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authcontext } from "../../Authprovider/Authprovider";
+import Loader from "../../Components/Loader/Loader";
 import UseToken from "../../Hooks/UseToken";
 
 const Login = () => {
   const { LoginUser, GoogleUser } = useContext(authcontext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  let from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [token] = UseToken(currentUser);
+  const [loading, setLoading] = useState(false);
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const {
     register,
@@ -25,6 +34,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setError("");
+        setLoading(true);
         setCurrentUser(email);
       })
       .catch((err) => {
@@ -66,9 +76,15 @@ const Login = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Successfully Registerd");
+          setLoading(false);
+          navigate("/");
         }
       });
   };
+
+  if (loading) {
+    return <Loader> </Loader>;
+  }
 
   return (
     <div>

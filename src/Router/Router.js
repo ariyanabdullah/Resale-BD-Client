@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute";
 import SellerRoutes from "./SellerRoutes";
 import UserRoute from "./UserRoute";
 import Error from "../Pages/Error/Error";
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/register",
