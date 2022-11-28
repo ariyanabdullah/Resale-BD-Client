@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { authcontext } from "../../../Authprovider/Authprovider";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 const MyOrders = () => {
   const { user } = useContext(authcontext);
 
+  const navigate = useNavigate();
+
   const {
     data: allOrders,
     isLoading,
@@ -17,8 +19,18 @@ const MyOrders = () => {
     queryKey: ["allOrders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allorder?email=${user?.email}`
+        `http://localhost:5000/allorder?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
+
+      if (res.status === 401 || res.status === 402 || res.status === 403) {
+        return navigate("/");
+      }
+
       const data = await res.json();
       return data;
     },
