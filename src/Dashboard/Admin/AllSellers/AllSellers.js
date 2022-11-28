@@ -17,11 +17,14 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["Sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=seller", {
-        headers: {
-          authorization: `${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://my-app-server.vercel.app/users?role=seller",
+        {
+          headers: {
+            authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       if (res.status === 401 || res.status === 402 || res.status === 403) {
         return navigate("/");
       }
@@ -31,7 +34,7 @@ const AllSellers = () => {
   });
   // delete a seller
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://my-app-server.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -46,7 +49,7 @@ const AllSellers = () => {
   // verify a seller
 
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://my-app-server.vercel.app/users/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -14,11 +14,14 @@ const AllBuyers = () => {
   } = useQuery({
     queryKey: ["Sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=user", {
-        headers: {
-          authorization: `${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://my-app-server.vercel.app/users?role=user",
+        {
+          headers: {
+            authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
 
       if (res.status === 401 || res.status === 402 || res.status === 403) {
         return navigate("/");
@@ -29,7 +32,7 @@ const AllBuyers = () => {
   });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://my-app-server.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

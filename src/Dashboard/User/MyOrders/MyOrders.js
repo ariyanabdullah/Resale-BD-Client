@@ -19,7 +19,7 @@ const MyOrders = () => {
     queryKey: ["allOrders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allorder?email=${user?.email}`,
+        `https://my-app-server.vercel.app/allorder?email=${user?.email}`,
         {
           headers: {
             authorization: `${localStorage.getItem("accessToken")}`,
@@ -39,7 +39,7 @@ const MyOrders = () => {
   const handleDelete = (id) => {
     console.log(id);
 
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://my-app-server.vercel.app/orders/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

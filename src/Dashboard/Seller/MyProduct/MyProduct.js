@@ -20,15 +20,27 @@ const MyProduct = () => {
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/products?email=${user?.email}`
+        `https://my-app-server.vercel.app/products?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
+
+      if (res.status === 401 || res.status === 402 || res.status === 403) {
+        return navigate("/");
+      }
+
       const data = await res.json();
       return data;
     },
   });
 
   const handleDelete = async (id) => {
-    const res = await axios.delete(`http://localhost:5000/reportedItems/${id}`);
+    const res = await axios.delete(
+      `https://my-app-server.vercel.app/reportedItems/${id}`
+    );
     if (res.data.deletedCount > 0) {
       refetch();
       toast.success("Product Delete SuccessFull");
@@ -38,7 +50,7 @@ const MyProduct = () => {
   const handleAdvirtis = (id) => {
     console.log(id);
 
-    fetch(`http://localhost:5000/advertisItem/${id}`, {
+    fetch(`https://my-app-server.vercel.app/advertisItem/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

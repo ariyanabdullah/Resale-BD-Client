@@ -76,7 +76,7 @@ const AddProduct = () => {
             image: image,
           };
 
-          fetch("http://localhost:5000/products", {
+          fetch("https://my-app-server.vercel.app/products", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

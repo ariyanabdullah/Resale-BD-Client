@@ -14,7 +14,7 @@ const ReportedItem = () => {
     queryKey: ["RoportedItems"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/reportedItems?isReported=true`
+        `https://my-app-server.vercel.app/reportedItems?isReported=true`
       );
       const data = await res.json();
       return data;
@@ -24,7 +24,9 @@ const ReportedItem = () => {
   // Delete Reported Item
 
   const handleDelete = async (id) => {
-    const res = await axios.delete(`http://localhost:5000/reportedItems/${id}`);
+    const res = await axios.delete(
+      `https://my-app-server.vercel.app/reportedItems/${id}`
+    );
     if (res.data.deletedCount > 0) {
       refetch();
       toast.success("Product Delete SuccessFull");

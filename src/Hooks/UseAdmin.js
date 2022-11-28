@@ -5,7 +5,7 @@ const UseAdmin = (email) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${email}`)
+    fetch(`https://my-app-server.vercel.app/users/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setIsAdmin(data.role);

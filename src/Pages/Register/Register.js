@@ -45,6 +45,7 @@ const Register = () => {
         const email = user.email;
         const name = user.displayName;
         const select = "user";
+        setCurrentUser(email);
         saveUSer(name, email, select);
       })
       .catch((err) => console.log(err.message));
@@ -59,7 +60,7 @@ const Register = () => {
       role: select,
     };
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://my-app-server.vercel.app/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

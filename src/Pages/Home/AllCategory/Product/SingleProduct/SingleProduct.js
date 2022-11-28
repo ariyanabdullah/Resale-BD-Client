@@ -29,7 +29,7 @@ const SingleProduct = ({ Product }) => {
   const [isadmin] = UseAdmin(user?.email);
 
   const handleReport = (id) => {
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://my-app-server.vercel.app/product/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -6,7 +6,7 @@ const AdvertismentSection = () => {
     queryKey: ["advertisMentItems"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/advertisItem?isAdvertise=true"
+        "https://my-app-server.vercel.app/advertisItem?isAdvertise=true"
       );
       const data = await res.json();
       return data;
