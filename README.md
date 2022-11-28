@@ -1,3 +1,30 @@
+1. adminEmail: rakib@gmail.com
+2. adminPassword:123456
+
+live Webstie Link:
+
+# project Description:
+
+Resale-BD is an resaler website. Here any one can sell and purchage any product if he is Loged in .
+
+# Core fetaures of This Website:
+
+- Authentication system implement by firebase
+- admin , seller,and user pannel implemented .
+- admin can see all user, all seller, and reported item . An admin can delete any user or seller or any Reported Product
+- seller can Post a Product in category ways. A seller can delete his product and advertise a product which will show on the home page
+- User can purchage any product if he is Loged in . An user can give payment throught stipe.
+- Any Loged user can Report any product which will display on admin dashboard
+
+# Techonology which I used:
+
+- Frontend :
+  html,tailwind (daisy ui), React js, Firebase
+- Backend :  
+   Node, mongoDb, Express js, jsonWebToken,
+- Tools:
+  DevTools, vsCode, Git, GitHub etc
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +95,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # b612-used-products-resale-clients-side-ariyanabdullah
