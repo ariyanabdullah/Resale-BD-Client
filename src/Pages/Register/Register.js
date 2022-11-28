@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { authcontext } from "../../Authprovider/Authprovider";
+import UseToken from "../../Hooks/UseToken";
 
 const Register = () => {
   const {
@@ -12,6 +13,8 @@ const Register = () => {
   } = useForm();
 
   const [error, setError] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [token] = UseToken(currentUser);
 
   const { RegisterUser, updateUser, GoogleUser } = useContext(authcontext);
   const handleRegister = (data) => {
@@ -61,6 +64,7 @@ const Register = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Successfully Registerd");
+          setCurrentUser(email);
         }
       });
   };
