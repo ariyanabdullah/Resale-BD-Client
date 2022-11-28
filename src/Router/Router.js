@@ -13,6 +13,9 @@ import MyOrders from "../Dashboard/User/MyOrders/MyOrders";
 import Product from "../Pages/Home/AllCategory/Product/Product";
 import Payment from "../Pages/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import SellerRoutes from "./SellerRoutes";
+import UserRoute from "./UserRoute";
 
 const router = createBrowserRouter([
   {
@@ -45,33 +48,65 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/allsellers",
-        element: <AllSellers></AllSellers>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allbuyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/reporteditem",
-        element: <ReportedItem></ReportedItem>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <ReportedItem></ReportedItem>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/myproduct",
-        element: <MyProduct></MyProduct>,
+        element: (
+          <SellerRoutes>
+            <MyProduct></MyProduct>
+          </SellerRoutes>
+        ),
       },
       {
         path: "/dashboard/addproduct/:email",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/users/${params.email}`),
-        element: <AddProduct></AddProduct>,
+        element: (
+          <SellerRoutes>
+            {" "}
+            <AddProduct></AddProduct>
+          </SellerRoutes>
+        ),
       },
       {
         path: "/dashboard/myorder",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <UserRoute>
+            <MyOrders></MyOrders>
+          </UserRoute>
+        ),
       },
       {
         path: "/dashboard/payment/:id",

@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { authcontext } from "../../Authprovider/Authprovider";
+import UseToken from "../../Hooks/UseToken";
 
 const Login = () => {
   const { LoginUser, GoogleUser } = useContext(authcontext);
 
   const [error, setError] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [token] = UseToken(currentUser);
 
   const {
     register,
@@ -22,6 +25,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setError("");
+        setCurrentUser(email);
       })
       .catch((err) => {
         setError(err.message);
