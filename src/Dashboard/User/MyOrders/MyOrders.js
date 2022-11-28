@@ -43,6 +43,15 @@ const MyOrders = () => {
     return <Loader></Loader>;
   }
 
+  if (allOrders.length === 0) {
+    return (
+      <div className="text-center font-bold mx-auto my-auto text-primary text-2xl ">
+        {" "}
+        You did not Ordered any Product{" "}
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="overflow-x-auto w-full">

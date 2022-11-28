@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { PuffLoader } from "react-spinners";
+
 import { authcontext } from "../Authprovider/Authprovider";
+import Loader from "../Components/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(authcontext);
@@ -9,10 +10,8 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div class="h-screen">
-        <div className="flex justify-center items-center h-full">
-          <PuffLoader color="#36d7b7" />
-        </div>
+      <div>
+        <Loader></Loader>
       </div>
     );
   }
