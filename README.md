@@ -1,7 +1,7 @@
 1. adminEmail: rakib@gmail.com
 2. adminPassword:123456
 
-live Webstie Link:
+live Webstie Link:https://resale-bd-e0679.web.app/
 
 # project Description:
 
